@@ -9,12 +9,15 @@ class NavbarPage extends Component {
 render() {
   return (
     <Nav className="justify-content-center bg-light " activeKey="/home" sticky="top" >
-    <Navbar.Brand href="/home" className="Marvel">MRX</Navbar.Brand>
+    <Navbar.Brand href="/login" className="Marvel">MRX</Navbar.Brand>
     <Nav.Item>
-      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/home">Home</Nav.Link>
     </Nav.Item>
     <Nav.Item>
-      <Nav.Link href="comic">Comics</Nav.Link>
+      <Nav.Link href="/profile/post">Post</Nav.Link>
+    </Nav.Item> 
+    <Nav.Item>
+      <Nav.Link href="/comic">Comics</Nav.Link>
     </Nav.Item>
     <Nav.Item>
       <Nav.Link href="/message">Message</Nav.Link>

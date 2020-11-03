@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ComicList from "./comicList";
-import ComicDetail from "./comicDetail";
-import { comics } from "../data/comics";
+import ComicDetail from "./comicDetails";
+import  comics  from "../data/comics.json";
 
 class comicStore extends Component {
   constructor(props) {

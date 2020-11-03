@@ -44,7 +44,7 @@ ul{list-style: none;}
   color:white;
   float: none;
   padding-left: 40px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 100px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -105,3 +105,68 @@ Button{
     font-weight:20px;
     font-style: capitalize;
   }
+.Messages{
+  max-width:auto ;
+  margin:auto;
+  margin-top: 4%;
+  font-family: sans-serif;
+  letter-spacing:0.5px ;
+  text-align: end;
+  padding-top: 30px;
+  border-radius: 9%; 
+  background: rgb(52, 58, 63);
+}
+.msg-header{
+  border: 0px solid white;
+width:50%;
+height:16%;
+border-radius: 10%;
+border-bottom: none;
+margin-top: 5%;
+text-align: center;
+display: inline-block;
+background: rgb(52, 58, 63);
+margin-left: 30%;
+
+}
+.Msg{
+  width:40px;
+  margin-left: 5%;
+  margin-top: 12px;
+  float:top;
+  
+}
+.Option{
+  width:10%;
+  height:5%;
+  float: left;
+  margin-left: 0%;
+ 
+}
+.label{
+  margin-bottom: 100%;
+  padding-right: 27%;
+  float: right;
+ 
+}
+p5{
+  color:white;
+  font-size: 60%;
+  display: inline-block;
+  font-family: 'Times New Roman', Times, serif;
+}
+.Form{
+  display:flexbox;
+  margin-left: 58%;
+  float:none;
+  margin-bottom: 40rem;
+  color:white;
+  height:60%;
+  
+}
+h5{
+background-image:url(images/A.jpg);
+color:rgb(255, 230, 0);
+font-weight: bolder;
+}
+

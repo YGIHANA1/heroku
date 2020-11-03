@@ -101,7 +101,7 @@ class Message extends React.Component {
           this.setState({ messages: data });
         }
       });
-
+      this.props.history.push("/message")
     this.toggleModal();
   };
 
@@ -110,22 +110,36 @@ class Message extends React.Component {
   };
   render() {
     return (
-      <>
+      <div className="row bg-info">
+         <div className="label ml-3">username:
+          <InputGroup className="use">
+              <FormControl
+                onChange={(e) =>
+                  this.setState({ username: e.currentTarget.value })
+                }
+        
+              ></FormControl>
+            </InputGroup>
+          
+          <>
+            <Button onClick={this.sendUser} className="bg-dark mt-1" rounded >Submit</Button>
+</>
+        </div>
+        <div className="label mt-2">
         <div className="Message">
           {this.state.username !== null && !this.state.showModal && (
             <>
-              <h2>Messages:</h2>
-              <ul id="messages" style={{ listStyle: "none",color:"white" ,border:"1px solid white",padding:"20px"}} className="bg-dark justify-content-end">
+              <div id="messages"  className="msg-header">
                 {this.state.messages.map((msg, i) => (
-                  <li key={i}>
+                  <div className="Msg mx-4 px-2 "key={i}>
                     <strong>{msg.from}</strong> {msg.text}
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </>
           )}
           {this.state.list.length > 0 ? (
-            <div className="d-block justify-content-top my-3">
+            <div className="Option">
               <select
                 onChange={(e) =>
                   e.currentTarget.value === "all"
@@ -140,7 +154,7 @@ class Message extends React.Component {
                 ))}
                 <option value={"all"}>Send to all</option>
               </select>
-              <form id="chat" onSubmit={this.sendMessage}>
+              <form id="chat" onSubmit={this.sendMessage} >
                 <input
                   autoComplete="off"
                   value={this.state.message}
@@ -153,23 +167,12 @@ class Message extends React.Component {
             <strong>user not found</strong>
           ) : null}
           
-  <div className="label  justify-content-end py-5" >username:
-          <InputGroup className="mb-3">
-              <FormControl
-                onChange={(e) =>
-                  this.setState({ username: e.currentTarget.value })
-                }
-              ></FormControl>
-            </InputGroup>
-          
-          <>
-            <Button onClick={this.sendUser} className="bg-dark">Submit</Button>
-</>
-        </div>
+ 
       </div>
         
         
-      </>);
+      </div>
+      </div>);
   }
 }
 

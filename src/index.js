@@ -4,6 +4,9 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import axios from "axios"
+
+axios.default.baseURL="http://localhost:7000"
 
 ReactDOM.render(
   <React.StrictMode>

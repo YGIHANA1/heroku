@@ -12,13 +12,23 @@ import BL from "../images/Bl.jpg"
 import WA from "../images/Wa.jpg"
 import BT from "../images/BT.jpg"
 import SP from "../images/Sp.gif"
+import axios from "axios"
 class Content extends React.Component{
-    
+
+  componentDidMount=()=>{
+    const config=
+    {
+      headers:{ Authorization:'Bearer'+ localStorage.getItem('token')}
+    }
+   axios.get("http:localhost:7000/users/login", config)
+   .then(res=>{console.log(res)})
+   .catch(err=>{console.log(err)})
+ }  
 render(){
     
     return(<div className="container">
       
-   
+   <h1></h1>
      
       <Jumbotron fluid className="bg-dark">
   <Container>
@@ -89,7 +99,7 @@ Accidents happen, but it’s not like there’s no precedent for publishers impr
 <div><a href="https://www.cbr.com/marvel-hulk-stories-underrated/"> <h2 style={{color:"black"}}>Hulk</h2> <Image src={BT} thumbnail className="bg-light"/></a><p1><br/>
 Accidents happen, but it’s not like there’s no precedent for publishers improperly crediting a characters’ creators. For decades DC Comics credited Bob Kane as the sole creator of Batman, ignoring the work that Bill Finger did on the character; they finally updated Batman’s creator credit only within the last few years. Lee himself was also somewhat famous for minimizing the contributions of collaborators like Kirby and Steve Ditko when it came to discussing the origins of some of Marvel’s most popular characters, though later in life he seemed to reverse that behavior.</p1></div>
 <hr/>
-<Jumbotron className="bg-light" xs={4}>
+<Jumbotron className="bg-dark" xs={4}>
   <Container>
     <Image src={SP} className="bg-dark" lg={5}/>
     <h3>Spider Man</h3>

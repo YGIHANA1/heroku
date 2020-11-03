@@ -1,19 +1,54 @@
 import React from "react";
-import comics from "./comics"
+import {Image} from "react-bootstrap"
+import axios from "axios"
 
-export default ({ id, title, imageUrl ,changecomic}) => (
+class Comics extends React.Component {
+  constructor(props){
+  super(props);
+  this.state= {
+    id:"",
+    imageUrl:"",
+          Title:"",
+          Description:"",
+          year:"",
+          genre:"",
+          changecomic:"",
+          Post:[]
+         
+  }}; 
+  componentDidMount = () =>{
+    this.getComics();
+  }
+   
+   getComics =  ()=>{    
+  
+ axios.get("http://localhost:5000/comics")
+   .then((response)=>{ 
+
+    const data =  response.data
+    console.log(data)
+    this.setState({Post:data})
+   })
+  .catch(()=> {
+    alert("error has occured")
+  })
+    }
+    render(){
+      return(
     <li
-      onClick={() => changecomic(id)}
-      className={title === id ? "border-thick card mt-3" : "card mt-3"}
-      key={title}
+    
+      className="border-thick card mt-3"
+
       style={{ cursor: "pointer" }}
     >
       <div className="media card-body">
-        <img className="book-image" src={imageUrl} alt="comic cover" />
+        <Image className="book-image"  alt="comic cover" />
         <div>
-          <p className="card-title font-weight-bold">{title}</p>
+          <p className="card-title font-weight-bold">{}</p>
          
         </div>
       </div>
     </li>
-  );
+  )}};
+
+  export default Comics

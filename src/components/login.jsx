@@ -1,44 +1,47 @@
 import React from "react"
 import {Form,Button} from "react-bootstrap"
+import {Redirect} from "react-router-dom"
 import "../App.css"
-class Login extends React.Component{
+import axios from "axios"
+
+class LoginForm extends React.Component {
 constructor(props){
-  super(props);
-  this.state={
-  email: "",
-  password:""
-}};
-  login = async () =>{
-    const res = await fetch("http://localhost:5000/users/login", {
-      method: "POST",
-      headers: {
-        "Accept":"application/json",
-        "Content-Type":"application/json"
-      },
-      body: JSON.stringify({email: this.state.email, password: this.state.password})
-    })
+super(props);
+this.state= { email: "",
+password: "" ,
+isLoading:false    
+}
+this.onSubmit= this.onSubmit.bind(this);
+}; 
 
-    if (res.ok){
-       //loggedin eureka!
-      //store the token
-      const result = await res.json();
-      console.log (result);
-     
-    }
-    else{
-      //show an error message :)
-      res.status(401).send("Not Founded")
-    }
-  }
+ componentDidMount =()=>{
+  this.login();
+ }
+ login  (){ 
+const data ={email:this.state.email,password:this.state.password}   
+axios.post("http://localhost:7000/users/login",data)
+.then(res => {localStorage.setItem('token', res.data.token)})
+.catch((err) => console.log(err))
+ }
+ onSubmit (e) {
+   e.preventDefault();
+const data= {email:this.email,password:this.password}
+axios.get("http://localhost:7000/users/login",data)
+.then(res=>{localStorage.setItem('token', res.data.token)})
+.catch(err=>{console.log(err)})
 
+this.props.history.push("/home/" + this.state.email)
+ }
 render(){
-return(
-<Form className="Form bg-dark"> 
+  const {email ,password , isLoading}=this.state
+return(<div className="container">
+  <>
+<Form className="Form bg-dark mt-2" onSubmit={this.onSubmit}> 
   <Form.Group controlId="formBasicEmail">
     <Form.Label >Username</Form.Label>
     <Form.Control className="Email" type="email" placeholder="Enter email" 
       value={this.state.email} 
-      onChange={e=> this.setState({email: e.currentTarget.value})} />
+     onChange={e=> this.setState({email:e.currentTarget.value})} />
     <Form.Text className="text-muted">
       We'll never share your email with anyone else.
     </Form.Text>
@@ -46,16 +49,17 @@ return(
 
   <Form.Group controlId="formBasicPassword">
     <Form.Label >Password</Form.Label>
-    <Form.Control className="Password" type="password" placeholder="Password" value={this.state.password} onChange={e=> this.setState({password: e.currentTarget.value})}/>
+    <Form.Control className="Password"  type="password" placeholder="Password" value={this.state.password} onChange={e => this.setState({password:e.currentTarget.value})}/>
   </Form.Group>
   <Form.Group controlId="formBasicCheckbox">
     <Form.Check type="checkbox" label="Check me out" />
   </Form.Group>
-  <Button variant="dark" type="submit" className="Button" onClick={this.login}>
-  <a href="/home">Login</a>
+  <Button variant="dark" type="submit"  disabled={isLoading} onClick={()=>this.login()}>
+ Login
   </Button>
 </Form>
-
-)}
-}
-export default Login
+</>
+</div>
+)
+}}
+export default  LoginForm
